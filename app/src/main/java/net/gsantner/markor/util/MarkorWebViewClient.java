@@ -89,8 +89,7 @@ public class MarkorWebViewClient extends WebViewClient {
             });
             ImageView imageview = popupView.findViewById(R.id.imageview_url);
             if (imageview != null){
-                new DownloadImageTask((ImageView) imageview)
-                        .execute(url);
+           //   new DownloadImageTask((ImageView) imageview.execute(url);
             } else {
                 System.out.println("CI PANA JE TAM NULL");
             }

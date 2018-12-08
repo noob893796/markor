@@ -2,28 +2,31 @@ package net.gsantner.markor.util;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ImageView;
 import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
+    Bitmap imageResult;
+    ImageView mImageView;
+    public DownloadImageTask(ImageView imageView) {
+        this.mImageView = imageView;
     }
-    protected Bitmap doInBackground(String... urls) {
+    public Bitmap doInBackground(String... urls) {
         String urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
+
+            imageResult = mIcon11;
         } catch (Exception e) {
-            Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
         return mIcon11;
     }
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        System.out.println(result);
+        this.imageResult = result;
+        System.out.println(imageResult);
     }
 }
